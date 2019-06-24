@@ -8,7 +8,13 @@ public class ShowIndexController {
 
     @GetMapping("/")
     public String showIndex() {
-        System.out.println("index.jsp");
-        return "index";
+        return "login";
+     }
+
+    @GetMapping("/pagedemo")
+    public String showDemoPage(){
+        System.out.println("pagedemo/index");
+        return "pagedemo/index";
     }
+
 }
