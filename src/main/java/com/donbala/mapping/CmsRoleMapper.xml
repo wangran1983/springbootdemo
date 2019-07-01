@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsRoleMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsRole">
+    <id column="ROLEID" jdbcType="VARCHAR" property="roleid" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEID, ROLENAME, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_role
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cms_role
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.donbala.model.CmsRole">
+    insert into cms_role (ROLEID, ROLENAME, MAKEDATE, 
+      MAKEUSER, MODIFYDATE, MODIFYUSER
+      )
+    values (#{roleid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{makedate,jdbcType=TIMESTAMP}, 
+      #{makeuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, #{modifyuser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsRole">
+    insert into cms_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsRole">
+    update cms_role
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsRole">
+    update cms_role
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsMenutraceMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsMenutrace">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERCODE" jdbcType="VARCHAR" property="usercode" />
+    <result column="MENUID" jdbcType="VARCHAR" property="menuid" />
+    <result column="OPERATEDATE" jdbcType="TIMESTAMP" property="operatedate" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERCODE, MENUID, OPERATEDATE, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_menutrace
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cms_menutrace
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.donbala.model.CmsMenutrace">
+    insert into cms_menutrace (ID, USERCODE, MENUID, 
+      OPERATEDATE, MAKEDATE, MAKEUSER, 
+      MODIFYDATE, MODIFYUSER)
+    values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{menuid,jdbcType=VARCHAR}, 
+      #{operatedate,jdbcType=TIMESTAMP}, #{makedate,jdbcType=TIMESTAMP}, #{makeuser,jdbcType=VARCHAR}, 
+      #{modifydate,jdbcType=TIMESTAMP}, #{modifyuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsMenutrace">
+    insert into cms_menutrace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="usercode != null">
+        USERCODE,
+      </if>
+      <if test="menuid != null">
+        MENUID,
+      </if>
+      <if test="operatedate != null">
+        OPERATEDATE,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null">
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null">
+        #{operatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsMenutrace">
+    update cms_menutrace
+    <set>
+      <if test="usercode != null">
+        USERCODE = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null">
+        MENUID = #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null">
+        OPERATEDATE = #{operatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsMenutrace">
+    update cms_menutrace
+    set USERCODE = #{usercode,jdbcType=VARCHAR},
+      MENUID = #{menuid,jdbcType=VARCHAR},
+      OPERATEDATE = #{operatedate,jdbcType=TIMESTAMP},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

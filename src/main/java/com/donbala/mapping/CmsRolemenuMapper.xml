@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsRolemenuMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsRolemenu">
+    <id column="ROLEID" jdbcType="VARCHAR" property="roleid" />
+    <id column="MENUID" jdbcType="VARCHAR" property="menuid" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEID, MENUID, ROLENAME, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.donbala.model.CmsRolemenuKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_rolemenu
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+      and MENUID = #{menuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.donbala.model.CmsRolemenuKey">
+    delete from cms_rolemenu
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+      and MENUID = #{menuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.donbala.model.CmsRolemenu">
+    insert into cms_rolemenu (ROLEID, MENUID, ROLENAME, 
+      MAKEDATE, MAKEUSER, MODIFYDATE, 
+      MODIFYUSER)
+    values (#{roleid,jdbcType=VARCHAR}, #{menuid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{makeuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifyuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsRolemenu">
+    insert into cms_rolemenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="menuid != null">
+        MENUID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsRolemenu">
+    update cms_rolemenu
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+      and MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsRolemenu">
+    update cms_rolemenu
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+      and MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -2,19 +2,16 @@ package com.donbala.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ShowIndexController {
 
     @GetMapping("/")
-    public String showIndex() {
-        return "login";
-     }
+    public ModelAndView showIndex(ModelAndView mv) {
 
-    @GetMapping("/pagedemo")
-    public String showDemoPage(){
-        System.out.println("pagedemo/index");
-        return "pagedemo/index";
-    }
+        mv.setViewName("login");
+        return mv;
+     }
 
 }

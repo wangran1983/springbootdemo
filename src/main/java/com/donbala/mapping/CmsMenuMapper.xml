@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsMenuMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsMenu">
+    <id column="MENUID" jdbcType="VARCHAR" property="menuid" />
+    <result column="MENUNAME" jdbcType="VARCHAR" property="menuname" />
+    <result column="PARENTMENUID" jdbcType="VARCHAR" property="parentmenuid" />
+    <result column="MENULINK" jdbcType="VARCHAR" property="menulink" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="NODEORDER" jdbcType="INTEGER" property="nodeorder" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENUID, MENUNAME, PARENTMENUID, MENULINK, STATUS, NODEORDER, MAKEDATE, MAKEUSER, 
+    MODIFYDATE, MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_menu
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUsercode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms_menu
+    where MENUID in (SELECT MENUID from cms_rolemenu rm where rm.roleid in (select roleid
+    from cms_userrole ur where ur.usercode = #{usercode} ) )order by nodeorder
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cms_menu
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.donbala.model.CmsMenu">
+    insert into cms_menu (MENUID, MENUNAME, PARENTMENUID, 
+      MENULINK, STATUS, NODEORDER, 
+      MAKEDATE, MAKEUSER, MODIFYDATE, 
+      MODIFYUSER)
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{parentmenuid,jdbcType=VARCHAR}, 
+      #{menulink,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{nodeorder,jdbcType=INTEGER}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{makeuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifyuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsMenu">
+    insert into cms_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        MENUID,
+      </if>
+      <if test="menuname != null">
+        MENUNAME,
+      </if>
+      <if test="parentmenuid != null">
+        PARENTMENUID,
+      </if>
+      <if test="menulink != null">
+        MENULINK,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="nodeorder != null">
+        NODEORDER,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentmenuid != null">
+        #{parentmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menulink != null">
+        #{menulink,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeorder != null">
+        #{nodeorder,jdbcType=INTEGER},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsMenu">
+    update cms_menu
+    <set>
+      <if test="menuname != null">
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentmenuid != null">
+        PARENTMENUID = #{parentmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menulink != null">
+        MENULINK = #{menulink,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeorder != null">
+        NODEORDER = #{nodeorder,jdbcType=INTEGER},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsMenu">
+    update cms_menu
+    set MENUNAME = #{menuname,jdbcType=VARCHAR},
+      PARENTMENUID = #{parentmenuid,jdbcType=VARCHAR},
+      MENULINK = #{menulink,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      NODEORDER = #{nodeorder,jdbcType=INTEGER},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

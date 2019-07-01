@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsUserMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsUser">
+    <id column="USERCODE" jdbcType="VARCHAR" property="usercode" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="GENDOR" jdbcType="VARCHAR" property="gendor" />
+    <result column="BRANCH" jdbcType="VARCHAR" property="branch" />
+    <result column="DEPARTMENT" jdbcType="VARCHAR" property="department" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="ADMINFLAG" jdbcType="VARCHAR" property="adminflag" />
+    <result column="PSWEXPIREDATE" jdbcType="TIMESTAMP" property="pswexpiredate" />
+    <result column="LASTLOGINDATE" jdbcType="TIMESTAMP" property="lastlogindate" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USERCODE, EMAIL, MOBILE, PASSWORD, NAME, GENDOR, BRANCH, DEPARTMENT, STATE, ADMINFLAG, 
+    PSWEXPIREDATE, LASTLOGINDATE, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_user
+    where USERCODE = #{usercode,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="selectByUsercodeAndPsw" parameterType="java.lang.String" resultType="com.donbala.model.CmsUser">
+    select
+    <include refid="Base_Column_List" />
+    from cms_user
+    where (USERCODE = #{usercode} or email = #{usercode} or mobile = #{usercode}) and password = #{password}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cms_user
+        where USERCODE = #{usercode,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.donbala.model.CmsUser">
+    insert into cms_user (USERCODE, EMAIL, MOBILE, 
+      PASSWORD, NAME, GENDOR, 
+      BRANCH, DEPARTMENT, STATE, 
+      ADMINFLAG, PSWEXPIREDATE, LASTLOGINDATE, 
+      MAKEDATE, MAKEUSER, MODIFYDATE, 
+      MODIFYUSER)
+    values (#{usercode,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gendor,jdbcType=VARCHAR}, 
+      #{branch,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{adminflag,jdbcType=VARCHAR}, #{pswexpiredate,jdbcType=TIMESTAMP}, #{lastlogindate,jdbcType=TIMESTAMP}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{makeuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifyuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsUser">
+    insert into cms_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="usercode != null">
+        USERCODE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="gendor != null">
+        GENDOR,
+      </if>
+      <if test="branch != null">
+        BRANCH,
+      </if>
+      <if test="department != null">
+        DEPARTMENT,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="adminflag != null">
+        ADMINFLAG,
+      </if>
+      <if test="pswexpiredate != null">
+        PSWEXPIREDATE,
+      </if>
+      <if test="lastlogindate != null">
+        LASTLOGINDATE,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="usercode != null">
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gendor != null">
+        #{gendor,jdbcType=VARCHAR},
+      </if>
+      <if test="branch != null">
+        #{branch,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="adminflag != null">
+        #{adminflag,jdbcType=VARCHAR},
+      </if>
+      <if test="pswexpiredate != null">
+        #{pswexpiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null">
+        #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsUser">
+    update cms_user
+    <set>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gendor != null">
+        GENDOR = #{gendor,jdbcType=VARCHAR},
+      </if>
+      <if test="branch != null">
+        BRANCH = #{branch,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="adminflag != null">
+        ADMINFLAG = #{adminflag,jdbcType=VARCHAR},
+      </if>
+      <if test="pswexpiredate != null">
+        PSWEXPIREDATE = #{pswexpiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null">
+        LASTLOGINDATE = #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERCODE = #{usercode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsUser">
+    update cms_user
+    set EMAIL = #{email,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      GENDOR = #{gendor,jdbcType=VARCHAR},
+      BRANCH = #{branch,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      ADMINFLAG = #{adminflag,jdbcType=VARCHAR},
+      PSWEXPIREDATE = #{pswexpiredate,jdbcType=TIMESTAMP},
+      LASTLOGINDATE = #{lastlogindate,jdbcType=TIMESTAMP},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where USERCODE = #{usercode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donbala.mapper.CmsCodedefMapper">
+  <resultMap id="BaseResultMap" type="com.donbala.model.CmsCodedef">
+    <id column="CODETYPE" jdbcType="VARCHAR" property="codetype" />
+    <id column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="CODENAME" jdbcType="VARCHAR" property="codename" />
+    <result column="CODEALIAS" jdbcType="VARCHAR" property="codealias" />
+    <result column="OTHERSIGN" jdbcType="VARCHAR" property="othersign" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
+    <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CODETYPE, CODE, CODENAME, CODEALIAS, OTHERSIGN, SOURCE, MAKEDATE, MAKEUSER, MODIFYDATE, 
+    MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.donbala.model.CmsCodedefKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_codedef
+    where CODETYPE = #{codetype,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.donbala.model.CmsCodedefKey">
+    delete from cms_codedef
+    where CODETYPE = #{codetype,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.donbala.model.CmsCodedef">
+    insert into cms_codedef (CODETYPE, CODE, CODENAME, 
+      CODEALIAS, OTHERSIGN, SOURCE, 
+      MAKEDATE, MAKEUSER, MODIFYDATE, 
+      MODIFYUSER)
+    values (#{codetype,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{codename,jdbcType=VARCHAR}, 
+      #{codealias,jdbcType=VARCHAR}, #{othersign,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{makeuser,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifyuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.donbala.model.CmsCodedef">
+    insert into cms_codedef
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codetype != null">
+        CODETYPE,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="codename != null">
+        CODENAME,
+      </if>
+      <if test="codealias != null">
+        CODEALIAS,
+      </if>
+      <if test="othersign != null">
+        OTHERSIGN,
+      </if>
+      <if test="source != null">
+        SOURCE,
+      </if>
+      <if test="makedate != null">
+        MAKEDATE,
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codetype != null">
+        #{codetype,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codename != null">
+        #{codename,jdbcType=VARCHAR},
+      </if>
+      <if test="codealias != null">
+        #{codealias,jdbcType=VARCHAR},
+      </if>
+      <if test="othersign != null">
+        #{othersign,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsCodedef">
+    update cms_codedef
+    <set>
+      <if test="codename != null">
+        CODENAME = #{codename,jdbcType=VARCHAR},
+      </if>
+      <if test="codealias != null">
+        CODEALIAS = #{codealias,jdbcType=VARCHAR},
+      </if>
+      <if test="othersign != null">
+        OTHERSIGN = #{othersign,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null">
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makeuser != null">
+        MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyuser != null">
+        MODIFYUSER = #{modifyuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODETYPE = #{codetype,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.donbala.model.CmsCodedef">
+    update cms_codedef
+    set CODENAME = #{codename,jdbcType=VARCHAR},
+      CODEALIAS = #{codealias,jdbcType=VARCHAR},
+      OTHERSIGN = #{othersign,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKEUSER = #{makeuser,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyuser,jdbcType=VARCHAR}
+    where CODETYPE = #{codetype,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>
