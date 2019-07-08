@@ -57,7 +57,7 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
     @Override
     @Transactional
     public void deleteRolemenuByroleid(String roleid) {
-
+        System.out.println("heleo");
             int deleterole = cmsRoleMapper.deleteByPrimaryKey(roleid);
             int deleterolemenu = cmsRolemenuMapper.deleteByRoleid(roleid);
     }
