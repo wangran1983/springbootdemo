@@ -3,7 +3,7 @@ package com.donbala.controller;
 import ch.qos.logback.classic.Logger;
 import com.donbala.model.CmsMenu;
 import com.donbala.model.CmsUser;
-import com.donbala.service.intf.CmsUserService;
+import com.donbala.service.intf.CmsUserServiceIntf;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class LoginController {
     public final static Logger log = (Logger) LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    private CmsUserService cmsUserService;
+    private CmsUserServiceIntf cmsUserServiceIntf;
 
 
     /**
@@ -40,7 +40,7 @@ public class LoginController {
 
         usermap.put("usercode",usercode);
         usermap.put("password",password);
-        cmsUser = cmsUserService.getUserByUsercode(usermap);
+        cmsUser = cmsUserServiceIntf.getUserByUsercode(usermap);
 
         //login failed
         if (cmsUser == null) {
@@ -52,9 +52,9 @@ public class LoginController {
         }
         else {//login success
 
-            cmsUserService.saveLoginTrace(usercode,"1");
+            cmsUserServiceIntf.saveLoginTrace(usercode,"1");
 
-            List<CmsMenu> menus = cmsUserService.getUserMenu(usercode);
+            List<CmsMenu> menus = cmsUserServiceIntf.getUserMenu(usercode);
             session.setAttribute("user",cmsUser);
 
             for (CmsMenu menu : menus) {
@@ -85,7 +85,7 @@ public class LoginController {
         if(session!=null && cmsUser!=null)
         {
             session.invalidate();
-            cmsUserService.saveLoginTrace(cmsUser.getUsercode(),"0");
+            cmsUserServiceIntf.saveLoginTrace(cmsUser.getUsercode(),"0");
         }
 
         mv.setViewName("redirect:/");

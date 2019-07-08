@@ -7,7 +7,7 @@ import com.donbala.mapper.CmsUserMapper;
 import com.donbala.model.CmsLogintrace;
 import com.donbala.model.CmsMenu;
 import com.donbala.model.CmsUser;
-import com.donbala.service.intf.CmsUserService;
+import com.donbala.service.intf.CmsUserServiceIntf;
 import com.donbala.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class CmsUserServiceImpl implements CmsUserService {
+public class CmsUserServiceImpl implements CmsUserServiceIntf {
 
     public final static Logger log = (Logger) LoggerFactory.getLogger(CmsUserServiceImpl.class);
 
@@ -40,7 +40,16 @@ public class CmsUserServiceImpl implements CmsUserService {
        return cmsUser;
     }
 
+    
     @Override
+    /**
+     *@methodname: saveLoginTrace
+     *@description: todo
+     *@param: [usercode, logintype]
+     *@return: void
+     *@date: 2019/7/2 12:42
+     *@author: wangran
+     */
     public void saveLoginTrace(String usercode,String logintype) {
         CmsLogintrace cmsLogintrace = new CmsLogintrace();
 
@@ -56,7 +65,17 @@ public class CmsUserServiceImpl implements CmsUserService {
         cmsLogintraceMapper.insert(cmsLogintrace);
     }
 
+
+
     @Override
+    /**
+    *@methodname: getUserMenu
+    *@description: todo
+    *@param: [usercode]
+    *@return: java.util.List<com.donbala.model.CmsMenu>
+    *@date: 2019/7/2 12:43
+    *@author: wangran
+    */
     public List<CmsMenu> getUserMenu(String usercode) {
         List<CmsMenu> menus = new ArrayList<>();
 
@@ -65,4 +84,20 @@ public class CmsUserServiceImpl implements CmsUserService {
         return  menus;
     }
 
+    /**
+     *@methodname:
+     *@description: 查询所有的菜单，做菜单树
+     *@param:
+     *@return:
+     *@date: 2019/7/4 17:05
+     *@author: wangran
+     */
+    @Override
+    public List<CmsMenu> getAllMenu() {
+        List<CmsMenu> menus = new ArrayList<>();
+
+        menus = cmsMenuMapper.selectAllMenu();
+
+        return  menus;
+    }
 }

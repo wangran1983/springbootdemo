@@ -19,4 +19,5 @@ public interface CmsMenuMapper {
 
     List<CmsMenu> selectByUsercode(String usercode);
 
+    List<CmsMenu> selectAllMenu();
 }

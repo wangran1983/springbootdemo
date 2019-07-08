@@ -10,7 +10,8 @@
     <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
   </resultMap>
   <sql id="Base_Column_List">
-    ROLEID, ROLENAME, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+    ROLEID, ROLENAME, DATE_FORMAT(MAKEDATE,'%Y-%m-%d %H:%i:%s') makedate
+, MAKEUSER,  DATE_FORMAT(MODIFYDATE,'%Y-%m-%d %H:%i:%s') modifydate,  MODIFYUSER
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -18,6 +19,26 @@
     from cms_role
     where ROLEID = #{roleid,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from cms_role
+    where 1=1
+    <if test="roleid != null and roleid !=''">
+      and roleid = #{roleid}
+    </if>
+    <if test="rolename != null and rolename !=''">
+      and rolename like concat('%',#{rolename},'%')
+    </if>
+    <if test="makedate != null and makedate != ''">
+      and makedate &gt;= STR_TO_DATE(#{makedate},"%Y-%m-%d")
+    </if>
+    <if test="makedate != null and makedate != ''">
+      and makedate &lt; date_add(#{makedate}, interval 1 day)
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from cms_role
     where ROLEID = #{roleid,jdbcType=VARCHAR}

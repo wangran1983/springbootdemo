@@ -1,10 +1,11 @@
 @charset "UTF-8";
-@import "https://fonts.googleapis.com/css?family=Montserrat:400,700";
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700");
+/*@import "https://fonts.googleapis.com/css?family=Montserrat:400,700";
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700");*/
 /*
 
 Fonts
 -------------------------------------------------*/
+/*
 @font-face {
   font-family: 'MontserratLight';
   src: url("../fonts/MontserratLight.eot");
@@ -13,12 +14,13 @@ Fonts
   font-family: 'Glyphicons Halflings';
   src: url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot");
   src: url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff") format("woff"), url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg"); }
+*/
 /*
 
 Global
 -------------------------------------------------*/
 body {
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   background: #f5f5f5;
   color: #878787; }
 
@@ -45,7 +47,8 @@ li {
   list-style: none; }
 
 p {
-  font-family: Poppins, sans-serif;
+  /*font-family: 微软雅黑;*/
+  font-family: 微软雅黑;
   color: #878787; }
 
 h1,
@@ -59,7 +62,7 @@ h6.h1,
 .h4,
 .h5,
 .h6 {
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
 
 .dib {
   display: inline-block; }
@@ -226,7 +229,7 @@ card
 .card-header h4 {
   display: inline-block; }
 .card-header p {
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   margin-bottom: 12px; }
 
 .card-header-right-icon {
@@ -970,7 +973,7 @@ Header
     margin-right: 22px; } }
 .notification-text {
   font-size: 12px;
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1037,12 +1040,12 @@ Header
     padding: 14px 15px;
     background: #fff; }
     .main .page-header .breadcrumb li:hover, .main .page-header .breadcrumb li:focus, .main .page-header .breadcrumb li.active {
-      font-family: Poppins, sans-serif;
+      font-family: 微软雅黑;
       font-weight: normal;
       font-size: 12px; }
     .main .page-header .breadcrumb li a {
       font-size: 12px;
-      font-family: Poppins, sans-serif; }
+      font-family: 微软雅黑; }
 
 .dropdown-task .progress {
   height: 5px;
@@ -1078,13 +1081,13 @@ chat
   -webkit-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s; }
   .chat-sidebar .user-name {
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
   .chat-sidebar .content {
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
   .chat-sidebar .textarea {
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
   .chat-sidebar .seen {
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
 
 .chat-sidebar.is-active {
   right: 0; }
@@ -1243,7 +1246,7 @@ Carousel
 .testimonial-widget-one .testimonial-text {
   margin-bottom: 30px; }
 .testimonial-widget-one .testimonial-author-position {
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   margin-right: 75px;
   position: relative;
   top: -5px; }
@@ -1672,14 +1675,14 @@ Recet comments
   float: left; }
   .comment-action .badge {
     text-transform: uppercase;
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
   .comment-action i {
     padding: 0px 5px; }
 
 .comment-date {
   float: right;
   color: #878787;
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
 
 /*
 
@@ -1725,7 +1728,7 @@ Forms
   -webkit-box-shadow: none;
           box-shadow: none;
   border-color: #e7e7e7;
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
   .form-control:hover {
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -1977,7 +1980,7 @@ ul.inbox-nav {
       line-height: 45px;
       padding: 0 20px;
       width: 100%;
-      font-family: Poppins, sans-serif; }
+      font-family: 微软雅黑; }
       ul.inbox-nav li a:hover {
         background: #f5f5f5;
         color: #6a6a6a; }
@@ -2009,7 +2012,7 @@ ul.labels-info li {
   ul.labels-info li a {
     border-radius: 0;
     color: #6a6a6a;
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
     ul.labels-info li a:hover {
       background: #f5f5f5;
       color: #6a6a6a; }
@@ -2095,7 +2098,7 @@ ul.inbox-pagination {
       background: #fff;
       border: 1px solid #e7e7e7;
       border-radius: 3px !important;
-      font-family: Poppins, sans-serif;
+      font-family: 微软雅黑;
       color: #878787;
       display: inline-block;
       padding: 5px 10px;
@@ -2298,7 +2301,7 @@ Todo List
     padding: 0; }
     .tdl-holder li span {
       margin-left: 30px;
-      font-family: Poppins, sans-serif;
+      font-family: 微软雅黑;
       vertical-align: middle;
       -webkit-transition: all .2s linear;
       transition: all .2s linear; }
@@ -2363,7 +2366,7 @@ Datamap
 -------------------------------------------------*/
 .datamap-sales-hover-tooltip {
   background: #252525;
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   padding: 5px 10px;
   color: #fff;
   font-weight: 400;
@@ -2375,7 +2378,7 @@ Datamap
 
 Table
 -------------------------------------------------*/
-thead tr th {
+/*thead tr th {
   color: #878787;
   font-weight: normal;
   text-transform: uppercase; }
@@ -2384,10 +2387,10 @@ thead tr th {
 
 tbody tr th {
   color: #878787;
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   font-weight: normal; }
 tbody tr td {
-  font-family: Poppins, sans-serif;
+  font-family: 微软雅黑;
   color: #878787; }
   tbody tr td:last-child {
     text-align: right; }
@@ -2405,7 +2408,7 @@ tbody tr td {
   border-bottom: 1px solid #e7e7e7; }
 
 .table .badge {
-  text-transform: uppercase; }
+  text-transform: uppercase; }*/
 
 /*
 
@@ -2536,7 +2539,7 @@ Profile
   margin-bottom: 15px;
   padding: 5px 0px;
   border-bottom: 1px solid #e7e7e7;
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
 
 .work-content {
   margin-bottom: 15px; }
@@ -2555,7 +2558,7 @@ Profile
   display: inline-block;
   font-size: 12px;
   margin-left: 10px;
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
   .user-Location i {
     font-size: 14px; }
 
@@ -2592,7 +2595,7 @@ Profile
     text-transform: uppercase;
     padding-top: 10px;
     padding-bottom: 15px;
-    font-family: Poppins, sans-serif; }
+    font-family: 微软雅黑; }
 
 .contact-title {
   display: inline-block;
@@ -2606,7 +2609,7 @@ Profile
 .contact-skype,
 .birth-date,
 .gender {
-  font-family: Poppins, sans-serif; }
+  font-family: 微软雅黑; }
 
 .profile-widget {
   margin: 0;

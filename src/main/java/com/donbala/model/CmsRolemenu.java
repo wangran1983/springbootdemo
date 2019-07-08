@@ -1,15 +1,13 @@
 package com.donbala.model;
 
-import java.util.Date;
-
 public class CmsRolemenu extends CmsRolemenuKey {
     private String rolename;
 
-    private Date makedate;
+    private String makedate;
 
     private String makeuser;
 
-    private Date modifydate;
+    private String modifydate;
 
     private String modifyuser;
 
@@ -21,11 +19,11 @@ public class CmsRolemenu extends CmsRolemenuKey {
         this.rolename = rolename;
     }
 
-    public Date getMakedate() {
+    public String getMakedate() {
         return makedate;
     }
 
-    public void setMakedate(Date makedate) {
+    public void setMakedate(String makedate) {
         this.makedate = makedate;
     }
 
@@ -37,11 +35,11 @@ public class CmsRolemenu extends CmsRolemenuKey {
         this.makeuser = makeuser;
     }
 
-    public Date getModifydate() {
+    public String getModifydate() {
         return modifydate;
     }
 
-    public void setModifydate(Date modifydate) {
+    public void setModifydate(String modifydate) {
         this.modifydate = modifydate;
     }
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "sessionFilter", urlPatterns = {"/main/*","/pagedemo/*"})
+@WebFilter(filterName = "sessionFilter", urlPatterns = {"/controller/*","/main/*","/pagedemo/*"})
 public class SessionFilter implements Filter {
 
     public final static Logger log = (Logger) LoggerFactory.getLogger(SessionFilter.class);
@@ -23,7 +23,7 @@ public class SessionFilter implements Filter {
         HttpSession session = httpServletRequest.getSession();
 
         String url = httpServletRequest.getRequestURI();
-
+        System.out.println(url);
         if (!url.equals("/login")&&session != null && session.getAttribute("user") == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/");
         } else {

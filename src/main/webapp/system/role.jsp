@@ -8,13 +8,15 @@
     <title>cms</title>
     <link href="../assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="../assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="../assets/css/lib/mmc-chat.css" rel="stylesheet" />
-    <link href="../assets/css/lib/sidebar.css" rel="stylesheet">
     <link href="../assets/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/lib/nixon.css" rel="stylesheet">
     <link href="../assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesh1eet">
+    <link href="../assets/css/lib/sidebar.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/bstable/bootstrap-table.css" rel="stylesheet"/>
+    <link href="../assets/datetime/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../assets/treeview/bootstrap-treeview.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -61,13 +63,13 @@
                     <%--动态菜单end--%>
 
                     <li><a href="<c:url value="/userlogout" />"><i class="ti-close"></i>退出系统</a></li>
-
+                        <li><a href="<c:url value="/" />"><i class="ti-close"></i>登录页</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- /# sidebar -->
-    <div class="header">
+    <div class="header">·
         <div class="pull-left">
             <div class="logo">
                 <a href="index.jsp">
@@ -79,144 +81,7 @@
             </div>
         </div>
         <div class="pull-right p-r-15">
-            <ul>
-                <li class="header-icon dib">
-                    <i class="ti-bell"></i>
-                    <div class="note-count">2</div>
-                    <div class="drop-down">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">Recent Notifications</span>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Mr. Jane</div>
-                                            <div class="notification-text">5 members joined today </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Mariam</div>
-                                            <div class="notification-text">likes a photo of you</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Tasnim</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="header-icon dib">
-                    <i class="ti-email"></i>
-                    <div class="note-count">21</div>
-                    <div class="drop-down">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">2 New Messages</span>
-                            <a href="app-email.html"><i class="ti-pencil-alt pull-right"></i></a>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/1.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Doe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Doe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="header-icon dib chat-sidebar-icon"><i class="ti-comments"></i></li>
-                <li class="header-icon dib">
-                    <img class="avatar-img" src="assets/images/avatar/1.jpg" alt="" /> <span class="user-avatar">Jane <i class="ti-angle-down f-s-10"></i></span>
-                    <div class="drop-down dropdown-profile">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">Upgrade Now</span>
-                            <p class="trial-day">30 Days Trail</p>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                <li><a href="#"><i class="ti-wallet"></i> <span>My Balance</span></a></li>
-                                <li><a href="#"><i class="ti-write"></i> <span>My Task</span></a></li>
-                                <li><a href="#"><i class="ti-calendar"></i> <span>My Calender</span></a></li>
-                                <li><a href="#"><i class="ti-email"></i> <span>Inbox</span></a></li>
-                                <li><a href="#"><i class="ti-settings"></i> <span>Setting</span></a></li>
-                                <li><a href="#"><i class="ti-help-alt"></i> <span>Help</span></a></li>
-                                <li><a href="#"><i class="ti-lock"></i> <span>Lock Screen</span></a></li>
-                                <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+          <%--头部右侧--%>
         </div>
     </div>
     <!-- END chat Sidebar-->
@@ -236,8 +101,8 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">角色管理</a></li>
                                     <li class="active">系统管理</li>
+                                    <li><a href="#">角色管理</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -258,33 +123,32 @@
                                             <div class="row">
                                                 <div class="col-md-4 ">
                                                     <div class="form-group ">
-                                                        <label class="col-sm-5 control-label">Text Input</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control">
+                                                        <label class="col-md-5 control-label">角色编码</label>
+                                                        <div class="col-md-7">
+                                                            <input id="roleid" type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div><!-- /# column -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="col-sm-5 control-label">Text Input</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control"
-                                                                   value="Some text value...">
+                                                        <label class="col-md-5 control-label">角色名称</label>
+                                                        <div class="col-md-7">
+                                                            <input id="rolename" type="text" class="form-control ">
                                                         </div>
                                                     </div>
                                                 </div><!-- /# column -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="col-sm-5 control-label">Text Input</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control"
-                                                                   value="Some text value...">
+                                                        <label class="col-md-5 control-label">创建时间</label>
+                                                        <div class="col-md-7">
+                                                            <input id="makedate" type="text" class="form-control ">
                                                         </div>
                                                     </div>
                                                 </div><!-- /# column -->
                                             </div>
                                             <div class="row">
                                                 <input id="queryrole" type="button" value="查 询" class="btn btn-primary m-b-10 m-l-5"></input>
+                                                <input id="addrole" type="button" value="增 加" class="btn btn-primary m-b-10 m-l-5" data-toggle="modal" data-target="#roleform"></input>
                                             </div>
                                         </form><!--/#form-->
                                     </div>
@@ -304,12 +168,18 @@
                                     <h4>查询结果</h4>
                                 </div>
                                 <div class="card-body">
-
-
                                             <div class="row">
-                                                <table  id="rolelist" class="table  table-bordered " ></table>
+                                                <table id="roletable"
+                                                       class="table  table-bordered table-striped"
+                                                       data-toggle="table"
+                                                       data-click-to-select="true"
+                                                       data-pagination="true"
+                                                       data-show-footer="true"
+                                                       data-side-pagination="client"
+                                                       <%--data-url="../json/data1.json"--%>
+                                                          >
+                                                </table>
                                             </div>
-
                                     </div>
                                 </div>
                             </div><!-- /# card -->
@@ -317,10 +187,123 @@
                     </div>
                     <!-- /# row -->
                     <div class="row">
-
+                        <!-- 增加角色表单（Modal） -->
+                        <div class="modal fade" id="roleform" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width:500px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times  关闭
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            增加角色
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="horizontal-form-elements">
+                                            <form class="form-horizontal" id = "roleaddform" role="form">
+                                                <div class="row">
+                                                    <div class="col-md-10 ">
+                                                        <div class="form-group ">
+                                                            <label class="col-sm-4 control-label">角色编码</label>
+                                                            <div class="col-sm-7">
+                                                                <input id="newroleid" name="newroleid" type="text" class="form-control" >
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /# column -->
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">角色名称</label>
+                                                            <div class="col-sm-7">
+                                                                <input id="newrolename" name="newrolename" type="text" class="form-control" >
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /# column -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-10 ">
+                                                        <label class="col-sm-4 control-label">角色菜单</label>
+                                                        <div class="col-sm-7">
+                                                            <div id="menutree" class="treeview">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                    </div>
+                                                </div>
+                                                          <%--  <label class="col-sm-5 control-label">角色菜单</label>--%>
+                                            </form>
+                                            <!--/#form-->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" value="保存" id="saverole"  class="btn btn-primary">
+                                        </input>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
                     </div>
                     <!-- /# row -->
                     <div class="row">
+                        <!-- 角色详情（Modal） -->
+                        <div class="modal fade" id="roleformdetail" tabindex="1" role="dialog" aria-labelledby="myModalLabeldetail" aria-hidden="true">
+                            <div class="modal-dialog" style="width:500px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times  关闭
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabeldetail">
+                                            角色详情
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="horizontal-form-elements">
+                                            <form class="form-horizontal" id = "roledetail" role="form">
+                                                <div class="row">
+                                                    <div class="col-md-10 ">
+                                                        <div class="form-group ">
+                                                            <label class="col-sm-4 control-label">角色编码</label>
+                                                            <div class="col-sm-7">
+                                                                <input id="roleiddetail" name="rolenamedetail" readonly="true" type="text" class="form-control" >
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /# column -->
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">角色名称</label>
+                                                            <div class="col-sm-7">
+                                                                <input id="rolenamedetail" name="rolenamedetail" readonly="true" type="text" class="form-control" >
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /# column -->
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-10 ">
+                                                        <label class="col-sm-4 control-label">角色菜单</label>
+                                                        <div class="col-sm-7">
+                                                            <div id="menutreedetail" class="treeview">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                    </div>
+                                                </div>
+                                                <%--  <label class="col-sm-5 control-label">角色菜单</label>--%>
+                                            </form>
+                                            <!--/#form-->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
 
                     </div>
                 <!-- /# row -->
@@ -343,18 +326,32 @@
 <script src="../assets/js/lib/bootstrap.min.js"></script>
 <script src="../assets/bstable/bootstrap-table.js"></script>
 <script src="../assets/bstable/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../assets/datetime/bootstrap-datetimepicker.js" ></script>
+<script src="../assets/datetime/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../assets/treeview/bootstrap-treeview.min.js"></script>
+<script src="../assets/jqvalidate/jquery.validate.min.js"></script>
+<script src="../assets/jqvalidate/localization/messages_zh.js"></script>
+<script src="../common/common.js"></script>
 <!-- bootstrap -->
 <!--  Datamap -->
-<script src="../assets/js/lib/datamap/d3.min.js"></script>
+<%--<script src="../assets/js/lib/datamap/d3.min.js"></script>
 <script src="../assets/js/lib/datamap/topojson.js"></script>
 <script src="../assets/js/lib/datamap/datamaps.world.min.js"></script>
 
 <script src="../assets/js/lib/datamap/datamap-init.js"></script>
-<script src="../assets/lib/lobipanel/js/lobipanel.js"></script>
+<script src="../assets/lib/lobipanel/js/lobipanel.js"></script>--%>
 <!-- // Datamap -->
-<script src="../assets/js/scripts.js"></script>
-<script src="./role.js" type="text/javascript"></script>
+<%----%>
+<script src="role.js"></script>
     <!-- role.js -->
+<%--<script src="../assets/js/scripts.js"></script>--%>
 </body>
+
+
+<%--<script>
+    $(function () {
+        $("#roleaddform").validate();
+    });
+</script>--%>
 
 </html>

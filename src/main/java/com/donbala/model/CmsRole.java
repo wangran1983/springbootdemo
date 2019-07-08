@@ -1,19 +1,40 @@
 package com.donbala.model;
 
-import java.util.Date;
+
+import java.util.List;
 
 public class CmsRole {
     private String roleid;
 
     private String rolename;
 
-    private Date makedate;
+    private String makedate;
 
     private String makeuser;
 
-    private Date modifydate;
+    private String modifydate;
 
     private String modifyuser;
+
+    private List<String> menus;
+
+    private String operatetype;
+
+    public String getOperatetype() {
+        return operatetype;
+    }
+
+    public void setOperatetype(String operatetype) {
+        this.operatetype = operatetype;
+    }
+
+    public List<String> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<String> menus) {
+        this.menus = menus;
+    }
 
     public String getRoleid() {
         return roleid;
@@ -31,11 +52,11 @@ public class CmsRole {
         this.rolename = rolename;
     }
 
-    public Date getMakedate() {
+    public String getMakedate() {
         return makedate;
     }
 
-    public void setMakedate(Date makedate) {
+    public void setMakedate(String makedate) {
         this.makedate = makedate;
     }
 
@@ -47,11 +68,11 @@ public class CmsRole {
         this.makeuser = makeuser;
     }
 
-    public Date getModifydate() {
+    public String getModifydate() {
         return modifydate;
     }
 
-    public void setModifydate(Date modifydate) {
+    public void setModifydate(String modifydate) {
         this.modifydate = modifydate;
     }
 

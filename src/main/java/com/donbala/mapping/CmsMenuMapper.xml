@@ -24,6 +24,12 @@
     where MENUID = #{menuid,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectAllMenu" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms_menu order by nodeorder
+  </select>
+
   <select id="selectByUsercode" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

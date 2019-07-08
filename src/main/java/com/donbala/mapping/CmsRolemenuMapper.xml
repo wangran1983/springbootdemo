@@ -20,6 +20,20 @@
     where ROLEID = #{roleid,jdbcType=VARCHAR}
       and MENUID = #{menuid,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByRoleid"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms_rolemenu
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByRoleid" >
+    delete from cms_rolemenu
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </delete>
+
+
   <delete id="deleteByPrimaryKey" parameterType="com.donbala.model.CmsRolemenuKey">
     delete from cms_rolemenu
     where ROLEID = #{roleid,jdbcType=VARCHAR}

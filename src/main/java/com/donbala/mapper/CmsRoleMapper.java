@@ -2,6 +2,8 @@ package com.donbala.mapper;
 
 import com.donbala.model.CmsRole;
 
+import java.util.List;
+
 public interface CmsRoleMapper {
     int deleteByPrimaryKey(String roleid);
 
@@ -10,6 +12,8 @@ public interface CmsRoleMapper {
     int insertSelective(CmsRole record);
 
     CmsRole selectByPrimaryKey(String roleid);
+
+    List<CmsRole> selectAll(CmsRole cmsRole);
 
     int updateByPrimaryKeySelective(CmsRole record);
 
