@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+    <commentGenerator>    
+        <property name="suppressAllComments" value="true" />    
+    </commentGenerator>   
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/cms"
+     driverClass="com.mysql.jdbc.Driver" password="1234qwer" userId="root" />
+
+      <javaTypeResolver>
+          <property name="forceBigDecimals" value="false" />
+      </javaTypeResolver>
+
+
+      <javaModelGenerator targetPackage="com.donbala.model" targetProject="springbootdemo" />
+    <sqlMapGenerator targetPackage="com.donbala.mapper" targetProject="springbootdemo" />
+    <javaClientGenerator targetPackage="com.donbala.mapper" targetProject="springbootdemo" type="XMLMAPPER" />
+    <table schema="cms_user" tableName="cms_user" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+        <table schema="cms_codedef" tableName="cms_codedef" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+        <table schema="cms_logintrace" tableName="cms_logintrace" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+        <table schema="cms_menu" tableName="cms_menu" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    
+        <table schema="cms_menutrace" tableName="cms_menutrace" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+        <table schema="cms_role" tableName="cms_role" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+        <table schema="cms_rolemenu" tableName="cms_rolemenu" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+       
+        <table schema="cms_userrole" tableName="cms_userrole" enableCountByExample="false" enableUpdateByExample="false" 
+           enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+  </context>
+</generatorConfiguration>
