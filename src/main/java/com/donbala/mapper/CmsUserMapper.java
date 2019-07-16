@@ -2,6 +2,7 @@ package com.donbala.mapper;
 
 import com.donbala.model.CmsUser;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CmsUserMapper {
@@ -17,6 +18,8 @@ public interface CmsUserMapper {
 
     int updateByPrimaryKey(CmsUser record);
 
-    CmsUser selectByUsercodeAndPsw(Map<String,String> user);
+    CmsUser selectByUsercodeAndPsw(Map<String, String> user);
+
+    List<CmsUser> selectUsers(CmsUser cmsUser);
 
 }

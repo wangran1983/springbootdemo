@@ -4,16 +4,18 @@ import ch.qos.logback.classic.Logger;
 import com.donbala.mapper.CmsLogintraceMapper;
 import com.donbala.mapper.CmsMenuMapper;
 import com.donbala.mapper.CmsUserMapper;
+import com.donbala.mapper.CmsUserroleMapper;
 import com.donbala.model.CmsLogintrace;
 import com.donbala.model.CmsMenu;
 import com.donbala.model.CmsUser;
+import com.donbala.model.CmsUserrole;
 import com.donbala.service.intf.CmsUserServiceIntf;
 import com.donbala.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -29,19 +31,18 @@ public class CmsUserServiceImpl implements CmsUserServiceIntf {
     private CmsLogintraceMapper cmsLogintraceMapper;
     @Autowired
     private CmsMenuMapper cmsMenuMapper;
+    @Autowired
+    private CmsUserroleMapper cmsUserroleMapper;
+
 
     @Override
     public CmsUser getUserByUsercode(Map<String,String> usermap) {
-        System.out.println("-----------121312123121312-------------------------");
-        log.info("jinru service");
-       CmsUser cmsUser = new CmsUser();
-       cmsUser = cmsUserMapper.selectByUsercodeAndPsw(usermap);
-
+       CmsUser cmsUser = cmsUserMapper.selectByUsercodeAndPsw(usermap);
        return cmsUser;
     }
 
     
-    @Override
+
     /**
      *@methodname: saveLoginTrace
      *@description: todo
@@ -50,6 +51,7 @@ public class CmsUserServiceImpl implements CmsUserServiceIntf {
      *@date: 2019/7/2 12:42
      *@author: wangran
      */
+    @Override
     public void saveLoginTrace(String usercode,String logintype) {
         CmsLogintrace cmsLogintrace = new CmsLogintrace();
 
@@ -67,37 +69,50 @@ public class CmsUserServiceImpl implements CmsUserServiceIntf {
 
 
 
-    @Override
+
     /**
-    *@methodname: getUserMenu
-    *@description: todo
-    *@param: [usercode]
-    *@return: java.util.List<com.donbala.model.CmsMenu>
-    *@date: 2019/7/2 12:43
-    *@author: wangran
+    *@description: 获取用户的菜单
     */
+    @Override
     public List<CmsMenu> getUserMenu(String usercode) {
-        List<CmsMenu> menus = new ArrayList<>();
-
-        menus = cmsMenuMapper.selectByUsercode(usercode);
-
+        List<CmsMenu> menus = cmsMenuMapper.selectByUsercode(usercode);
         return  menus;
     }
 
     /**
-     *@methodname:
      *@description: 查询所有的菜单，做菜单树
-     *@param:
-     *@return:
-     *@date: 2019/7/4 17:05
-     *@author: wangran
      */
     @Override
     public List<CmsMenu> getAllMenu() {
-        List<CmsMenu> menus = new ArrayList<>();
-
-        menus = cmsMenuMapper.selectAllMenu();
-
+        List<CmsMenu> menus = cmsMenuMapper.selectAllMenu();
         return  menus;
+    }
+
+
+    /**
+    *@description: 根据页面的查询条件查询客户列表
+    */
+    @Override
+    public List<CmsUser> queryUsers(CmsUser cmsUser) {
+        List<CmsUser> userList = cmsUserMapper.selectUsers(cmsUser);
+        return userList;
+    }
+
+    /**
+    *@description: 根据用户id删除用户，包括用户的角色
+    */
+    @Override
+    @Transactional
+    public void deleteUser(String usercode) {
+        cmsUserMapper.deleteByPrimaryKey(usercode);
+        cmsUserroleMapper.deleteByUsercode(usercode);
+    }
+
+    @Override
+    public CmsUser queryUserbyUsercode(String usercode) {
+        CmsUser cmsUser = cmsUserMapper.selectByPrimaryKey(usercode);
+        List<CmsUserrole> cmsUserroleList = cmsUserroleMapper.queryRoleByUsercode(usercode);
+        cmsUser.setCmsUserroles(cmsUserroleList);
+        return cmsUser;
     }
 }

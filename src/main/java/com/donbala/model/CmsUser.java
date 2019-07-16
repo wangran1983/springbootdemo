@@ -1,6 +1,6 @@
 package com.donbala.model;
 
-import java.util.Date;
+import java.util.List;
 
 public class CmsUser {
     private String usercode;
@@ -23,17 +23,37 @@ public class CmsUser {
 
     private String adminflag;
 
-    private Date pswexpiredate;
+    private String pswexpiredate;
 
-    private Date lastlogindate;
+    private String lastlogindate;
 
-    private Date makedate;
+    private String makedate;
 
     private String makeuser;
 
-    private Date modifydate;
+    private String modifydate;
 
     private String modifyuser;
+
+    private List<CmsUserrole> cmsUserroles;
+
+    private String operatetype;
+
+    public List<CmsUserrole> getCmsUserroles() {
+        return cmsUserroles;
+    }
+
+    public void setCmsUserroles(List<CmsUserrole> cmsUserroles) {
+        this.cmsUserroles = cmsUserroles;
+    }
+
+    public String getOperatetype() {
+        return operatetype;
+    }
+
+    public void setOperatetype(String operatetype) {
+        this.operatetype = operatetype;
+    }
 
     public String getUsercode() {
         return usercode;
@@ -115,27 +135,27 @@ public class CmsUser {
         this.adminflag = adminflag;
     }
 
-    public Date getPswexpiredate() {
+    public String getPswexpiredate() {
         return pswexpiredate;
     }
 
-    public void setPswexpiredate(Date pswexpiredate) {
+    public void setPswexpiredate(String pswexpiredate) {
         this.pswexpiredate = pswexpiredate;
     }
 
-    public Date getLastlogindate() {
+    public String getLastlogindate() {
         return lastlogindate;
     }
 
-    public void setLastlogindate(Date lastlogindate) {
+    public void setLastlogindate(String lastlogindate) {
         this.lastlogindate = lastlogindate;
     }
 
-    public Date getMakedate() {
+    public String getMakedate() {
         return makedate;
     }
 
-    public void setMakedate(Date makedate) {
+    public void setMakedate(String makedate) {
         this.makedate = makedate;
     }
 
@@ -147,11 +167,11 @@ public class CmsUser {
         this.makeuser = makeuser;
     }
 
-    public Date getModifydate() {
+    public String getModifydate() {
         return modifydate;
     }
 
-    public void setModifydate(Date modifydate) {
+    public void setModifydate(String modifydate) {
         this.modifydate = modifydate;
     }
 

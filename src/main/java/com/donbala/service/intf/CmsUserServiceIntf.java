@@ -8,11 +8,17 @@ import java.util.Map;
 
 public interface CmsUserServiceIntf {
 
-     CmsUser getUserByUsercode(Map<String,String> usermap);
+     CmsUser getUserByUsercode(Map<String, String> usermap);
 
-     void saveLoginTrace(String usercode,String logintype);
+     void saveLoginTrace(String usercode, String logintype);
 
      List<CmsMenu> getUserMenu(String usercode);
 
      List<CmsMenu> getAllMenu();
+
+     List<CmsUser> queryUsers(CmsUser cmsUser);
+
+     void deleteUser(String usercode);
+
+     CmsUser queryUserbyUsercode(String usercode);
 }

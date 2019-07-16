@@ -30,14 +30,8 @@ public class RoleController {
     @Autowired
     private CmsRoleServiceIntf cmsRoleService ;
 
-
     /**
-    *@methodname: getRoleList
     *@description: 查询角色的列表
-    *@param: []
-    *@return: java.util.List<com.donbala.model.CmsRole>
-    *@date: 2019/7/2 13:03
-    *@author: wangran
     */
     @GetMapping("/controller/getrolelist")
     @ResponseBody
@@ -48,12 +42,7 @@ public class RoleController {
 
 
     /**
-    *@methodname: saveRole
     *@description: 保存角色信息和菜单信息
-    *@param: [cmsRole]
-    *@return: com.donbala.util.MessageNotice
-    *@date: 2019/7/5 16:29
-    *@author: wangran
     */
     @PostMapping("/controller/saverole")
     @ResponseBody
@@ -62,11 +51,8 @@ public class RoleController {
         MessageNotice messageNotice = new MessageNotice();
 
         String operatetype = cmsRole.getOperatetype();
-
         String sysdate = DateUtil.getSysDate();
         String usercode = ((CmsUser) session.getAttribute("user")).getUsercode();
-
-
         CmsRole role= cmsRoleService.getRoleByid(cmsRole.getRoleid());
 
         if(operatetype.equals("insert"))
@@ -78,10 +64,9 @@ public class RoleController {
 
             if (role != null) {
                 messageNotice.setFlag("0");
-                messageNotice.setMessage("该用户编码已经存在！");
+                messageNotice.setMessage("该角色编码已经存在！");
                 return messageNotice;
             }
-
             saveRoleOperate(cmsRole, messageNotice);
 
         } else if (operatetype.equals("update")) {
@@ -96,14 +81,6 @@ public class RoleController {
         return messageNotice;
     }
 
-    /**
-    *@methodname:
-    *@description:  保存客户信息返回结果函数 insert and update公用
-    *@param:
-    *@return:
-    *@date: 2019/7/8 16:55
-    *@author: wangran
-    */
     private void saveRoleOperate(CmsRole cmsRole, MessageNotice messageNotice) {
         try {
             cmsRoleService.saveRole(cmsRole);
@@ -119,51 +96,35 @@ public class RoleController {
 
 
     /**
-     *@methodname: getRoleDetail
      *@description: 查询角色明细
-     *@param: [cmsRole]
-     *@return: com.donbala.model.CmsRole
-     *@date: 2019/7/8 9:59
-     *@author: wangran
      */
     @GetMapping("/controller/getroledetail")
     @ResponseBody
     public CmsRole getRoleDetail(CmsRole cmsRole) {
-
-        System.out.println(cmsRole.getRoleid());
-
-        CmsRole tCmsrRole = new CmsRole();
-
         List<CmsRole> rolelist = cmsRoleService.getRoleList(cmsRole);
-        tCmsrRole = rolelist.get(0);
+        CmsRole tCmsrRole = rolelist.get(0);
 
         List<CmsRolemenu> cmsRolemenuList = cmsRoleService.getRoleMenu(cmsRole.getRoleid());
-
         List<String> rolemenus = new ArrayList<>();
 
         for (CmsRolemenu cmsRolemenu : cmsRolemenuList) {
             rolemenus.add(cmsRolemenu.getMenuid());
         }
-
         tCmsrRole.setMenus(rolemenus);
 
         return tCmsrRole;
     }
 
 
+
+    /**
+    *@description: 删除角色及下面的菜单
+    */
     @PostMapping("/controller/deleterole")
     @ResponseBody
-    /**
-    *@methodname: deleteRole
-    *@description: 删除角色及下面的菜单
-    *@param: [cmsRole]
-    *@return: com.donbala.util.MessageNotice
-    *@date: 2019/7/8 10:13
-    *@author: wangran
-    */
     public MessageNotice deleteRole(CmsRole cmsRole) {
-
         MessageNotice messageNotice = new MessageNotice();
+
         try {
             cmsRoleService.deleteRolemenuByroleid(cmsRole.getRoleid());
             messageNotice.setMessage("删除成功");

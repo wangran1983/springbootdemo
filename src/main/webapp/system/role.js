@@ -133,7 +133,10 @@ function roledetail(roleid) {
         },
 
         fail: function () {
-            alert("o(╯□╰)o，可能网络有问题");
+            swal({
+                title: "o(╯□╰)o，可能网络有问题！",
+                type: "warning",
+            });
         }
 
     })
@@ -175,7 +178,10 @@ function roleedit(roleid) {
         },
         
         fail: function () {
-            alert("o(╯□╰)o，可能网络有问题");
+            swal({
+                title: "o(╯□╰)o，可能网络有问题！",
+                type: "warning",
+            });
         }
 
     })
@@ -193,11 +199,18 @@ function roledelete(roleid) {
         },
 
         success: function(data) {
-            alert(JSON.stringify(data));
+            swal({
+                title: "删除成功！",
+                type: "success",
+            });
         },
 
         fail: function () {
-            alert("o(╯□╰)o，可能网络有问题");        }
+            swal({
+                title: "o(╯□╰)o，可能网络有问题！",
+                type: "warning",
+            });
+        }
     });
 
 }
@@ -223,8 +236,10 @@ function queryrolelist() {
             $("#roletable").bootstrapTable('load', returndata);
         },
         error: function () {
-            var err = "没有数据";
-            alert(err);
+            swal({
+                title: "o(╯□╰)o，服务调用出错！",
+                type: "warning",
+            });
         }
     });
 }
@@ -394,18 +409,31 @@ function saverole() {
         data: JSON.stringify($cmsrole),
         contentType: "application/json",
         success: function (data) {
+
             if(data.flag == '1'){
-                alert(data.message);
-                $("#roleform").modal('hide');//保存成功则关闭模态框，并且重置模态框
-                window.location.reload();//重新刷新页面
+
+                swal({
+                        title: "保存成功！",
+                        type: "success",
+                    },
+                    function() {
+                        $("#roleform").modal('hide');//保存成功则关闭模态框，并且重置模态框
+                        window.location.reload();//重新刷新页面
+                    });
             }
             else {
-                alert(data.message);
+                swal({
+                   title: data.message,
+                   type : "error"
+                });
             }
 
         },
         error: function () {
-            alert("接口调用异常");
+            swal({
+                title: data.message,
+                type : "error"
+            });
         }
     });
 }

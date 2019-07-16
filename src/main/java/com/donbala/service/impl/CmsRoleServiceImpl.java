@@ -27,7 +27,6 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
 
     @Autowired
     private CmsRoleMapper cmsRoleMapper;
-
     @Autowired
     private CmsRolemenuMapper cmsRolemenuMapper;
 
@@ -48,18 +47,15 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
 
     @Override
     public List<CmsRolemenu> getRoleMenu(String roleid) {
-
         List<CmsRolemenu> cmsRolemenuList = cmsRolemenuMapper.selectByRoleid(roleid);
-
         return cmsRolemenuList;
     }
 
     @Override
     @Transactional
     public void deleteRolemenuByroleid(String roleid) {
-        System.out.println("heleo");
-            int deleterole = cmsRoleMapper.deleteByPrimaryKey(roleid);
-            int deleterolemenu = cmsRolemenuMapper.deleteByRoleid(roleid);
+        cmsRoleMapper.deleteByPrimaryKey(roleid);
+        cmsRolemenuMapper.deleteByRoleid(roleid);
     }
 
 
@@ -82,11 +78,10 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
             cmsRolemenu.setMakeuser(usercode);
             cmsRolemenu.setModifydate(modifydate);
             cmsRolemenu.setModifyuser(usercode);
-            int insertrolemenu =cmsRolemenuMapper.insert(cmsRolemenu);
+            cmsRolemenuMapper.insert(cmsRolemenu);
         }
 
-        int insertrole = cmsRoleMapper.insert(cmsRole);
-
+        cmsRoleMapper.insert(cmsRole);
     }
 
 

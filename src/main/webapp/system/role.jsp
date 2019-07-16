@@ -16,7 +16,7 @@
     <link href="../assets/bstable/bootstrap-table.css" rel="stylesheet"/>
     <link href="../assets/datetime/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="../assets/treeview/bootstrap-treeview.min.css" rel="stylesheet">
-
+    <link href="../assets/css/lib/sweetalert/sweetalert.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -63,8 +63,6 @@
                     <%--动态菜单end--%>
 
                     <li><a href="<c:url value="/userlogout" />"><i class="ti-close"></i>退出系统</a></li>
-                        <li><a href="<c:url value="/" />"><i class="ti-close"></i>登录页</a></li>
-                </ul>
             </div>
         </div>
     </div>
@@ -331,6 +329,7 @@
 <script src="../assets/treeview/bootstrap-treeview.min.js"></script>
 <script src="../assets/jqvalidate/jquery.validate.min.js"></script>
 <script src="../assets/jqvalidate/localization/messages_zh.js"></script>
+<script src="../assets/js/lib/sweetalert/sweetalert.min.js"></script>
 <script src="../common/common.js"></script>
 <!-- bootstrap -->
 <!--  Datamap -->

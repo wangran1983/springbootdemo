@@ -31,13 +31,9 @@ public class MenuController {
     @GetMapping("/controller/menutree")
     @ResponseBody
     public List<TreeNode>  getMenuTree() {
-
         TreeNodeUtil treeNodeUtil = new TreeNodeUtil();
-
         List<CmsMenu> menulist = cmsUserServiceIntf.getAllMenu();
-
         List<TreeNode> treeNodes = treeNodeUtil.getNodeTree(menulist);
-
         return treeNodes;
     }
 

@@ -27,44 +27,29 @@ public class LoginController {
 
     /**
     *@description: 用户权限验证，成功后，则写入登录轨迹，返回用户所有菜单，失败则返回登录界面
-    *@param: [usercode, password, mv, session, modelMap]
-    *@return: org.springframework.web.servlet.ModelAndView
-    *@date: 2019/6/26 18:16
-    *@author: wangran
     */
     @PostMapping("/userlogin")
     public ModelAndView login(String usercode, String password, ModelAndView mv, HttpSession session) {
 
         Map<String, String> usermap = new HashMap<>();
         CmsUser cmsUser = new CmsUser();
-
         usermap.put("usercode",usercode);
         usermap.put("password",password);
         cmsUser = cmsUserServiceIntf.getUserByUsercode(usermap);
 
         //login failed
         if (cmsUser == null) {
-
-            System.out.println("没有此用户");
             mv.setViewName("redirect:/");
-
             return  mv;
         }
-        else {//login success
-
+        else {
             cmsUserServiceIntf.saveLoginTrace(usercode,"1");
 
             List<CmsMenu> menus = cmsUserServiceIntf.getUserMenu(usercode);
             session.setAttribute("user",cmsUser);
-
-            for (CmsMenu menu : menus) {
-                System.out.println(menu.getMenuname());
-            }
-
             session.setAttribute("menus",menus);
             mv.setViewName("redirect:/main/welcome.jsp");
         }
-
         return mv;
     }
 
@@ -79,17 +64,14 @@ public class LoginController {
     public ModelAndView logout(ModelAndView mv, HttpSession session){
 
         CmsUser cmsUser = (CmsUser) session.getAttribute("user");
-
-        log.info(cmsUser.getEmail());
-
-        if(session!=null && cmsUser!=null)
-        {
+        if (session == null || cmsUser == null) {
+            mv.setViewName("redirect:/");
+        }
+        else if(session!=null && cmsUser!=null){
             session.invalidate();
             cmsUserServiceIntf.saveLoginTrace(cmsUser.getUsercode(),"0");
+            mv.setViewName("redirect:/");
         }
-
-        mv.setViewName("redirect:/");
-
         return mv;
     }
 

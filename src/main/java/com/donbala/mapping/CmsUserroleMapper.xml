@@ -19,11 +19,27 @@
     where USECODE = #{usecode,jdbcType=VARCHAR}
       and ROLEID = #{roleid,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="queryRoleByUsercode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms_userrole
+    where USECODE = #{usecode,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="com.donbala.model.CmsUserroleKey">
     delete from cms_userrole
     where USECODE = #{usecode,jdbcType=VARCHAR}
       and ROLEID = #{roleid,jdbcType=VARCHAR}
   </delete>
+
+
+  <delete id="deleteByUsercode" >
+    delete from cms_userrole
+    where USECODE = #{usecode,jdbcType=VARCHAR}
+  </delete>
+
   <insert id="insert" parameterType="com.donbala.model.CmsUserrole">
     insert into cms_userrole (USECODE, ROLEID, MAKEDATE, 
       MAKEUSER, MODIFYDATE, MODIFYUSER
