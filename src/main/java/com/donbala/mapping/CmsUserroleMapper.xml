@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.donbala.mapper.CmsUserroleMapper">
   <resultMap id="BaseResultMap" type="com.donbala.model.CmsUserrole">
-    <id column="USECODE" jdbcType="VARCHAR" property="usecode" />
+    <id column="USERCODE" jdbcType="VARCHAR" property="usercode" />
     <id column="ROLEID" jdbcType="VARCHAR" property="roleid" />
     <result column="MAKEDATE" jdbcType="TIMESTAMP" property="makedate" />
     <result column="MAKEUSER" jdbcType="VARCHAR" property="makeuser" />
@@ -10,34 +10,21 @@
     <result column="MODIFYUSER" jdbcType="VARCHAR" property="modifyuser" />
   </resultMap>
   <sql id="Base_Column_List">
-    USECODE, ROLEID, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
+    USERCODE, ROLEID, MAKEDATE, MAKEUSER, MODIFYDATE, MODIFYUSER
   </sql>
-  <select id="selectByPrimaryKey" parameterType="com.donbala.model.CmsUserroleKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from cms_userrole
-    where USECODE = #{usecode,jdbcType=VARCHAR}
-      and ROLEID = #{roleid,jdbcType=VARCHAR}
-  </select>
-
 
   <select id="queryRoleByUsercode" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from cms_userrole
-    where USECODE = #{usecode,jdbcType=VARCHAR}
+    where USERCODE = #{usecode,jdbcType=VARCHAR}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="com.donbala.model.CmsUserroleKey">
-    delete from cms_userrole
-    where USECODE = #{usecode,jdbcType=VARCHAR}
-      and ROLEID = #{roleid,jdbcType=VARCHAR}
-  </delete>
 
 
   <delete id="deleteByUsercode" >
     delete from cms_userrole
-    where USECODE = #{usecode,jdbcType=VARCHAR}
+    where USERCODE = #{usecode,jdbcType=VARCHAR}
   </delete>
 
   <insert id="insert" parameterType="com.donbala.model.CmsUserrole">
@@ -91,7 +78,18 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsUserrole">
+
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into cms_userrole values
+        <foreach collection="list" item="cmsUserrole" separator="," close=";">
+            (#{cmsUserrole.usercode},#{cmsUserrole.roleid},#{cmsUserrole.makedate},#{cmsUserrole.makeuser},
+            #{cmsUserrole.modifydate},#{cmsUserrole.modifyuser})
+        </foreach>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.donbala.model.CmsUserrole">
     update cms_userrole
     <set>
       <if test="makedate != null">

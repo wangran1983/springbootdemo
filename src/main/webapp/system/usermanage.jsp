@@ -126,7 +126,7 @@
                                                     </div>
                                                         <input id="queryuser" type="button" value="搜 索"
                                                                class="btn btn-primary m-b-10 m-l-5"></input>
-                                                        <input id="adduser" type="button" value="增 加"
+                                                        <input id="adduser" type="button" value="增加新用户"
                                                                class="btn btn-primary m-b-10 m-l-5" data-toggle="modal"
                                                                data-target="#userform"></input>
                                         </div>
@@ -246,7 +246,7 @@
                 </div>
                 <!-- /# row -->
                 <div class="row">
-                    <!-- 角色详情（Modal） -->
+                    <!-- 用户详情（Modal） -->
                     <div class="modal fade" id="userformdetail" tabindex="1" role="dialog" aria-labelledby="myModalLabeldetail" aria-hidden="true">
                         <div class="modal-dialog" style="width:500px">
                             <div class="modal-content">
@@ -298,15 +298,8 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">角色</label>
                                                         <div class="col-sm-7">
-                                                            <input id="useroledetail" name="useroledetail" readonly="true" type="text" class="form-control" >
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /# column -->
-                                                <div class="col-md-10">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-4 control-label">创建时间</label>
-                                                        <div class="col-sm-7">
-                                                            <input id="makedatedetail" name="makedatedetail" readonly="true" type="text" class="form-control" >
+                                                            <select id="roleselectdetail" class="selectpicker " data-style="form-control" multiple>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div><!-- /# column -->
@@ -325,6 +318,131 @@
 
                 </div>
                 <!-- /# row -->
+
+                <!-- /# 修改用户row -->
+                <div class="row">
+                    <!-- 用户详情（Modal） -->
+                    <div class="modal fade" id="userformedit" tabindex="1" role="dialog" aria-labelledby="myModalLabeledit" aria-hidden="true">
+                        <div class="modal-dialog" style="width:500px">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times  关闭
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabeledit">
+                                        用户编辑
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="horizontal-form-elements">
+                                        <form class="form-horizontal" id = "useredit" role="form">
+                                            <div class="row">
+                                                <div class="col-md-10 ">
+                                                    <div class="form-group ">
+                                                        <label class="col-sm-4 control-label">用户ID</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="usercodeedit" name="usercodeedit" readonly="true" type="text" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">姓名</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="usernameedit" name="usernameedit"  type="text" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">手机</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="mobileedit" name="mobiledetail"  type="text" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">邮箱</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="emailedit" name="emailedit"  type="text" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">角色</label>
+                                                        <div class="col-sm-7">
+                                                            <select id="roleselectedit" class="selectpicker " data-style="form-control" multiple>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                            </div>
+                                        </form>
+                                        <!--/#form-->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" value="保存" id="saveuseredit"  class="btn btn-primary"></input>
+                                    <input type="button" value="关闭" class="btn btn-default" data-dismiss="modal"></input>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                </div>
+                <!-- /# row -->
+
+                <!-- /# 修改用户row -->
+                <div class="row">
+                    <!-- 用户详情（Modal） -->
+                    <div class="modal fade" id="pwdformedit" tabindex="1" role="dialog" aria-labelledby="myModalLabelpassword" aria-hidden="true">
+                        <div class="modal-dialog" style="width:500px">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times  关闭
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabelpassword">
+                                        用户编辑
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="horizontal-form-elements">
+                                        <form class="form-horizontal" id = "pwdedit" role="form">
+                                            <div class="row">
+                                                <div class="col-md-10 ">
+                                                    <div class="form-group ">
+                                                        <label class="col-sm-4 control-label">新密码</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="passwordedit" name="passwordedit" type="password" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label class="col-sm-4 control-label">再次输入密码</label>
+                                                        <div class="col-sm-7">
+                                                            <input id="passwordeditagain" name="passwordeditagain" type="password" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /# column -->
+                                            </div>
+                                        </form>
+                                        <!--/#form-->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" value="保存" id="savepassword"  class="btn btn-primary"></input>
+                                    <input type="button" value="关闭" class="btn btn-default" data-dismiss="modal"></input>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                </div>
+                <!-- /# row -->
+
+
             </div>
             <!-- /# main content -->
         </div>

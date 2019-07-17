@@ -1,21 +1,37 @@
 package com.donbala.model;
 
-import java.util.Date;
-
-public class CmsUserrole extends CmsUserroleKey {
-    private Date makedate;
+public class CmsUserrole {
+    private String makedate;
 
     private String makeuser;
 
-    private Date modifydate;
+    private String modifydate;
 
     private String modifyuser;
+    private String usercode;
 
-    public Date getMakedate() {
+    private String roleid;
+
+    public String getUsercode() {
+        return usercode;
+    }
+
+    public void setUsercode(String usercode) {
+        this.usercode = usercode;
+    }
+
+    public String getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(String roleid) {
+        this.roleid = roleid;
+    }
+    public String getMakedate() {
         return makedate;
     }
 
-    public void setMakedate(Date makedate) {
+    public void setMakedate(String makedate) {
         this.makedate = makedate;
     }
 
@@ -27,11 +43,11 @@ public class CmsUserrole extends CmsUserroleKey {
         this.makeuser = makeuser;
     }
 
-    public Date getModifydate() {
+    public String getModifydate() {
         return modifydate;
     }
 
-    public void setModifydate(Date modifydate) {
+    public void setModifydate(String modifydate) {
         this.modifydate = modifydate;
     }
 

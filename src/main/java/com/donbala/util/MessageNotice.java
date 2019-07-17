@@ -8,7 +8,7 @@ package com.donbala.util;
  * @Description: todo
  **/
 public class MessageNotice {
-    private String flag ;//1 : 成功；2: 失败
+    private String flag ;//1 : 成功；0: 失败
     private String message ;
 
     public String getFlag() {

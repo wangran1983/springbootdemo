@@ -60,7 +60,7 @@ function operateFormatter(value, row, index) {
         '<a id="detail" href="javascript:void(0)" title="详情" data-toggle="modal" data-target="#roleformdetail" style="color: green">',
         '详情',
         '</a>  ',
-        '<a id="edit" href="javascript:void(0)" title="编辑" data-toggle="modal" data-target="#roleform" style="color: blue">',
+        '<a id="edit" href="javascript:void(0)" title="编辑" data-toggle="modal" data-target="#userformedit" style="color: blue">',
         '编辑',
         '</a>  ',
         '<a id="delete" href="javascript:void(0)" title="删除" style="color: red">',
@@ -73,21 +73,12 @@ function operateFormatter(value, row, index) {
 window.operateEvents = {
     'click #detail': function (e, value, row, index) {
         roledetail(row.roleid);
-        // alert('You click like action, row: ' + JSON.stringify(row))
     },
     'click #edit': function (e, value, row, index) {
         roleedit(row.roleid);
-        //alert('You click like action, row: ' + row.roleid);
-
     },
     'click #delete': function (e, value, row, index) {
-
         roledelete(row.roleid);
-
-        $("#roletable").bootstrapTable('remove', {
-            field: 'roleid',
-            values: [row.roleid]
-        })
     }
 }
 
@@ -188,7 +179,24 @@ function roleedit(roleid) {
 }
 
 /*roledelete删除*/
+
 function roledelete(roleid) {
+    swal({
+            title: "确定删除吗？",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "确 定",
+            cancelButtonText:"再想想",
+            closeOnConfirm: false
+        },
+        function(){
+            roledeleteCallback(roleid);
+        });
+}
+
+
+
+function roledeleteCallback(roleid) {
 
     $.ajax({
         url: systemPath + "/controller/deleterole",
@@ -203,9 +211,14 @@ function roledelete(roleid) {
                 title: "删除成功！",
                 type: "success",
             });
+
+            $("#roletable").bootstrapTable('remove', {
+                field: 'roleid',
+                values: roleid
+            })
         },
 
-        fail: function () {
+        error: function () {
             swal({
                 title: "o(╯□╰)o，可能网络有问题！",
                 type: "warning",

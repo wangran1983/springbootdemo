@@ -21,4 +21,8 @@ public interface CmsUserServiceIntf {
      void deleteUser(String usercode);
 
      CmsUser queryUserbyUsercode(String usercode);
+
+     void saveUser(CmsUser cmsUser);
+
+     void editUser(CmsUser cmsUser);
 }

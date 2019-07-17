@@ -1,12 +1,10 @@
 package com.donbala.mapper;
 
 import com.donbala.model.CmsUserrole;
-import com.donbala.model.CmsUserroleKey;
 
 import java.util.List;
 
 public interface CmsUserroleMapper {
-    int deleteByPrimaryKey(CmsUserroleKey key);
 
     int deleteByUsercode(String usercode);
 
@@ -14,11 +12,12 @@ public interface CmsUserroleMapper {
 
     int insertSelective(CmsUserrole record);
 
-    CmsUserrole selectByPrimaryKey(CmsUserroleKey key);
 
     int updateByPrimaryKeySelective(CmsUserrole record);
 
     int updateByPrimaryKey(CmsUserrole record);
+
+    int insertList(List<CmsUserrole> cmsUserroles);
 
     List<CmsUserrole> queryRoleByUsercode(String usercode);
 }

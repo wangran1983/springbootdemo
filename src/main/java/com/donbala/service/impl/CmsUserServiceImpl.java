@@ -115,4 +115,22 @@ public class CmsUserServiceImpl implements CmsUserServiceIntf {
         cmsUser.setCmsUserroles(cmsUserroleList);
         return cmsUser;
     }
+
+
+    @Override
+    @Transactional
+    public void editUser(CmsUser cmsUser) {
+        cmsUserMapper.deleteByPrimaryKey(cmsUser.getUsercode());
+        cmsUserroleMapper.deleteByUsercode(cmsUser.getUsercode());
+
+        saveUser(cmsUser);
+    }
+
+    @Transactional
+    @Override
+    public void saveUser(CmsUser cmsUser) {
+        cmsUserMapper.insert(cmsUser);
+        cmsUserroleMapper.insertList(cmsUser.getCmsUserroles());
+    }
+
 }
