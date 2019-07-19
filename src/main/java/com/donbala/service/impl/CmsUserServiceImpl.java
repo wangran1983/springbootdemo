@@ -133,4 +133,9 @@ public class CmsUserServiceImpl implements CmsUserServiceIntf {
         cmsUserroleMapper.insertList(cmsUser.getCmsUserroles());
     }
 
+    @Override
+    @Transactional
+    public void setPassword(CmsUser cmsUser) {
+        cmsUserMapper.updateByPrimaryKeySelective(cmsUser);
+    }
 }

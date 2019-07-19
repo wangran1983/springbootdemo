@@ -60,7 +60,7 @@ function operateFormatter(value, row, index) {
         '<a id="detail" href="javascript:void(0)" title="详情" data-toggle="modal" data-target="#roleformdetail" style="color: green">',
         '详情',
         '</a>  ',
-        '<a id="edit" href="javascript:void(0)" title="编辑" data-toggle="modal" data-target="#userformedit" style="color: blue">',
+        '<a id="edit" href="javascript:void(0)" title="编辑" data-toggle="modal" data-target="#roleform" style="color: blue">',
         '编辑',
         '</a>  ',
         '<a id="delete" href="javascript:void(0)" title="删除" style="color: red">',

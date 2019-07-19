@@ -90,4 +90,6 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
         CmsRole cmsRole = cmsRoleMapper.selectByPrimaryKey(roleid);
         return cmsRole;
     }
+
+
 }

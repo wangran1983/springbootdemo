@@ -190,7 +190,7 @@ window.operateEvents = {
         userdelete(row.usercode);
     },
     'click #setpassword': function (e, value, row, index) {
-        setpassword(row.usercode);
+        $("#userpasswordedit").val(row.usercode);
     }
 }
 
@@ -319,10 +319,9 @@ function userdeleteCallback(usercode) {
     });
 }
 
-function setpassword(usercode) {
-
+function setpassword() {
     let password = $("#newpassword").val();
-
+    let usercode = $("#userpasswordedit").val();
     let user = {
         usercode: usercode,
         password: password

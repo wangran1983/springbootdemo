@@ -36,7 +36,7 @@
     from cms_user
     where 1=1
     <if test="usercode != null and usercode != ''">
-    and (USERCODE = #{usercode} or email = #{usercode} or mobile = #{usercode} or name like concat('%',#{usercode},'%') )
+    and USERCODE = #{usercode}
     </if>
   </select>
 
@@ -44,7 +44,7 @@
     select
     <include refid="Base_Column_List" />
     from cms_user
-    where (USERCODE = #{usercode} or email = #{usercode} or mobile = #{usercode}) and password = #{password}
+    where (USERCODE = #{usercode}) and password = #{password}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

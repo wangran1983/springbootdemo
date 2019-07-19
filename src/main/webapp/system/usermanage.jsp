@@ -405,7 +405,7 @@
                                         &times  关闭
                                     </button>
                                     <h4 class="modal-title" id="myModalLabelpassword">
-                                        用户编辑
+                                         设置密码
                                     </h4>
                                 </div>
                                 <div class="modal-body">
@@ -416,6 +416,7 @@
                                                     <div class="form-group ">
                                                         <label class="col-sm-4 control-label">新密码</label>
                                                         <div class="col-sm-7">
+                                                            <input id="userpasswordedit" type="hidden" class="form-control" >
                                                             <input id="passwordedit" name="passwordedit" type="password" class="form-control" >
                                                         </div>
                                                     </div>

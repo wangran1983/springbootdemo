@@ -60,7 +60,7 @@ public class UserController {
         List<CmsUser> cmsUserList = cmsUserService.queryUsers(cmsUser);
         if (cmsUserList.size() > 0) {
             messageNotice.setFlag("0");
-            messageNotice.setMessage("该用户已经存在！");
+            messageNotice.setMessage("用户名已经存在！");
             return messageNotice;
         }else{
             cmsUserService.saveUser(cmsUser);
@@ -116,7 +116,7 @@ public class UserController {
         List<CmsUserrole> cmsUserroleList = cmsUser.getCmsUserroles();
         initUserroles(sysDate, modifyuser, cmsUserroleList);
 
-        cmsUserService.editUser(cmsUser);
+        cmsUserService.editUser(cmsUseredit);
         messageNotice.setFlag("1");
         messageNotice.setMessage("修改成功");
 
@@ -135,4 +135,19 @@ public class UserController {
         }
     }
 
+    @PostMapping("/controller/setpassword")
+    @ResponseBody
+    public MessageNotice setPassword(@RequestBody  CmsUser cmsUser) {
+        System.out.println("--------"+ cmsUser.getUsercode());
+        MessageNotice messageNotice = new MessageNotice();
+        String password = DigestUtils.md5DigestAsHex(cmsUser.getPassword().getBytes());
+        System.out.println(password);
+        cmsUser.setPassword(password);
+
+        cmsUserService.setPassword(cmsUser);
+        messageNotice.setFlag("1");
+
+        return messageNotice;
+    }
+    
 }

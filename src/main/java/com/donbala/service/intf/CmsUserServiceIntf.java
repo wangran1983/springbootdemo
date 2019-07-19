@@ -25,4 +25,6 @@ public interface CmsUserServiceIntf {
      void saveUser(CmsUser cmsUser);
 
      void editUser(CmsUser cmsUser);
+
+     void setPassword(CmsUser cmsUser);
 }
