@@ -221,7 +221,7 @@ function userdetail(usercode) {
             $("#roleselectdetail").selectpicker("refresh");
         },
 
-        fail: function () {
+        error: function () {
             swal({
                 title: "o(╯□╰)o，可能网络有问题！",
                 type: "warning",
@@ -259,7 +259,7 @@ function useredit(usercode) {
             $("#roleselectedit").selectpicker("refresh");
         },
 
-        fail: function () {
+        error: function () {
             swal({
                 title: "o(╯□╰)o，可能网络有问题！",
                 type: "warning",
@@ -377,7 +377,7 @@ function queryuserlist() {
         success: function (data) {
             $("#usertable").bootstrapTable('load', data);
         },
-        fail: function () {
+        error: function () {
             swal({
                 title: "啥都没查到 o(╯□╰)o",
                 type: "error"

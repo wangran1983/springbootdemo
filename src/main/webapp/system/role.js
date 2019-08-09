@@ -123,7 +123,7 @@ function roledetail(roleid) {
             }
         },
 
-        fail: function () {
+        error: function () {
             swal({
                 title: "o(╯□╰)o，可能网络有问题！",
                 type: "warning",
@@ -168,7 +168,7 @@ function roleedit(roleid) {
             }
         },
         
-        fail: function () {
+        error: function () {
             swal({
                 title: "o(╯□╰)o，可能网络有问题！",
                 type: "warning",

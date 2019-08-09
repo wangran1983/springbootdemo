@@ -31,7 +31,7 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
     private CmsRolemenuMapper cmsRolemenuMapper;
 
  
-    @Override
+
     /**
     *@methodname: getRoleList
     *@description: 根据输入的条件查询role的列表
@@ -40,6 +40,7 @@ public class CmsRoleServiceImpl implements CmsRoleServiceIntf {
     *@date: 2019/7/2 12:43
     *@author: wangran
     */
+    @Override
     public List<CmsRole> getRoleList(CmsRole cmsRole) {
         List<CmsRole> rolelist = cmsRoleMapper.selectAll(cmsRole);
         return rolelist;

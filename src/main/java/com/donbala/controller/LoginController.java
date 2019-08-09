@@ -36,8 +36,6 @@ public class LoginController {
     public MessageNotice login(String usercode, String password, ModelAndView mv, HttpSession session) {
 
         MessageNotice messageNotice = new MessageNotice();
-
-        System.out.println("1111111111111111111");
         Map<String, String> usermap = new HashMap<>();
         CmsUser cmsUser = new CmsUser();
         password = DigestUtils.md5DigestAsHex(password.getBytes());

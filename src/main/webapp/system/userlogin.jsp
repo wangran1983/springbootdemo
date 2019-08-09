@@ -20,7 +20,6 @@
 </head>
 
 <body class="bg-primary">
-
 	<div class="Nixon-login">
 		<div class="container">
 			<div class="row">
@@ -61,14 +60,5 @@
     <script src="../assets/js/lib/sweetalert/sweetalert.min.js"></script>
     <script src="../common/common.js"></script>
     <script src="../system/userlogin.js"></script>
-    <!-- bootstrap -->
-<%--    <script src="userlogin.js"></script>--%>
-    <script>
-/*
-        $(function () {
-            alert(1);
-        })*/
-
-    </script>
 </body>
 </html>

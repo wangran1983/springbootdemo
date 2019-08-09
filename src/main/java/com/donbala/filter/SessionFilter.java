@@ -23,7 +23,6 @@ public class SessionFilter implements Filter {
         HttpSession session = httpServletRequest.getSession();
 
         String url = httpServletRequest.getRequestURI();
-        System.out.println(url);
         if (!url.equals("/login")&&session != null && session.getAttribute("user") == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/");
         } else {
