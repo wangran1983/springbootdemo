@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.donbala.mapper.QuartzMapper">
+	<resultMap type="com.donbala.model.Quartz" id="BaseResultMap">
+		<result column="jobCode" property="jobCode" jdbcType="VARCHAR"/>
+		<result column="jobClassName" property="jobClassName" jdbcType="VARCHAR"/>
+		<result column="jobName" property="jobName" jdbcType="VARCHAR"/>
+		<result column="jobPlanCode" property="jobPlanCode" jdbcType="VARCHAR"/>
+		<result column="jobPlanDesc" property="jobPlanDesc" jdbcType="VARCHAR"/>
+		<result column="repeatUnit" property="repeatUnit" jdbcType="VARCHAR"/>
+		<result column="repeatInterval" property="repeatInterval" jdbcType="VARCHAR"/>
+		<result column="useFlag" property="useFlag" jdbcType="VARCHAR"/>
+		<result column="startDate" property="startDate" jdbcType="VARCHAR"/>
+		<result column="endDate" property="endDate" jdbcType="VARCHAR"/>
+		<result column="triggerState" property="triggerState" jdbcType="VARCHAR"/>
+		<result column="paramCode" property="paramCode" jdbcType="VARCHAR"/>
+		<result column="paramValue" property="paramValue" jdbcType="VARCHAR"/>
+		<result column="paramName" property="paramName" jdbcType="VARCHAR"/>
+		<result column="valueAlias" property="valueAlias" jdbcType="VARCHAR"/>
+		<result column="runState" property="runState" jdbcType="VARCHAR"/>
+		<result column="cronExp" property="cronExp" jdbcType="VARCHAR"/>		
+	</resultMap>
+	<sql id="page1">
+		<![CDATA[ select * from  (select test_.*,rownum rn_ from ( ]]>
+	</sql>
+	<sql id="page2">
+		<![CDATA[) test_ where rownum< = #{pageEnd}) where rn_ >  #{pageStart}]]>
+	</sql>
+	 <select id="getAvailableJobPlan" resultMap="BaseResultMap">
+		SELECT JOBCODE,
+			   JOBPLANCODE,
+			   (SELECT M.JOBCLASSNAME FROM cms_JOBDEF M WHERE M.JOBCODE=T.JOBCODE) JOBCLASSNAME,
+			   date_format(STARTDATE,'%Y-%m-%d %H:%i:%s') STARTDATE,
+			   date_format(ENDDATE,'%Y-%m-%d %H:%i:%s') ENDDATE,
+			   REPEATINTERVAL,
+			   REPEATUNIT
+		  FROM cms_JOBPLANDEF T 
+		 WHERE T.USEFLAG = '0'
+	</select>
+	<select id="getAllJobPlan" resultMap="BaseResultMap" parameterType="com.donbala.model.Quartz">
+		SELECT (SELECT D.JOBNAME FROM cms_JOBDEF D WHERE D.JOBCODE = T.JOBCODE) JOBNAME,
+		       JOBCODE,
+		       JOBPLANCODE,
+		       JOBPLANDESC,
+		       CONCAT('每',REPEATINTERVAL,(SELECT CODENAME FROM cms_CODEDEF M WHERE M. CODE = T.REPEATUNIT AND M.CODETYPE = 'jobPlan'),'一次') REPEATINTERVAL,
+		       (CASE
+		         WHEN useflag = '0' THEN
+		          '启用'
+		         WHEN useflag = '1' THEN
+		          '停止'
+		         ELSE
+		          ''
+		       END) USEFLAG,
+		       (case
+		         when t.USEFLAG = '1' then
+		          '停止运行'
+		         ELSE
+		          ifnull((select (case
+		                          when a.runstate = '0' then
+		                           '正在运行'
+		                          when a.runstate = '1' then
+		                           '等待运行'
+		                        end) runstate
+		                   from cms_jobrunlog a
+		                  where a.JOBPLANCODE = t.jobplancode
+		                  order by a.SERIALNO desc limit 1),
+		                 '等待运行')
+		       end) runstate,
+		       (select p.PARAMVALUE
+		          from cms_jobplanparam p
+		         where 1 = 1
+		           and p.PARAMCODE = 'IP'
+		           and p.JOBPLANCODE = t.JOBPLANCODE) PARAMVALUE,
+		       DATE_FORMAT(t.STARTDATE,'%Y-%m-%d %T') STARTDATE
+		  FROM cms_JOBPLANDEF T
+		 ORDER BY T.MAKEDATE DESC
+	</select>
+	<select id="selectJobPlanCount" resultType="int" parameterType="com.donbala.model.Quartz">
+		SELECT  COUNT(1) FROM cms_JOBPLANDEF T
+	</select>
+	<select id="selectJobName" resultMap="BaseResultMap">
+		SELECT JOBCODE,JOBNAME,JOBCLASSNAME FROM cms_JOBDEF ORDER BY JOBCODE
+	</select>
+	<select id="selectRepeatUnit" resultMap="BaseResultMap">
+		SELECT CODE JOBCODE,CODENAME JOBNAME,CODEALIAS VALUEALIAS FROM cms_CODEDEF WHERE CODETYPE= 'jobPlan' ORDER BY CODE
+	</select>
+	<select id="selectJobParam" resultMap="BaseResultMap" parameterType="com.donbala.model.Quartz">
+		SELECT JOBCODE,PARAMCODE,PARAMNAME,
+		(SELECT JOBCLASSNAME FROM cms_JOBDEF D WHERE D.JOBCODE = T.JOBCODE) JOBCLASSNAME
+		 FROM cms_JOBPARAMDEF T WHERE T.JOBCODE = #{jobCode} ORDER BY MAKEDATE
+	</select>
+	<insert id="insertJobPlanDef"  parameterType="com.donbala.model.Quartz">
+		INSERT INTO cms_JOBPLANDEF  (JOBPLANCODE,JOBCODE,JOBPLANDESC,REPEATINTERVAL,REPEATUNIT,STARTDATE,ENDDATE,USEFLAG,TRIGGERSTATE,
+		MAKEDATE,MAKEUSER,MODIFYDATE,MODIFYUSER,CRONEXP)
+			VALUES(#{jobPlanCode},#{jobName},#{jobPlanDesc},#{repeatInterval},#{repeatUnit},str_TO_DATE(#{startDate},'%Y-%m-%d %H:%i:%s'),str_TO_DATE(#{endDate},'%Y-%m-%d %H:%i:%s'),#{useFlag},#{triggerState},
+			str_TO_DATE(#{makeDate},'%Y-%m-%d %H:%i:%s'),#{makeUser},str_TO_DATE(#{modifyDate},'%Y-%m-%d %H:%i:%s'),#{modifyUser},#{cronExp})
+	
+	</insert>
+	<insert id="insertJobPlanParam" parameterType="com.donbala.model.Quartz">
+		INSERT INTO cms_JOBPLANPARAM (JOBCODE,JOBPLANCODE,PARAMCODE,PARAMVALUE,MAKEDATE,MAKEUSER,MODIFYDATE,MODIFYUSER)
+			values(#{jobName},#{jobPlanCode},#{paramCode},#{paramValue},str_TO_DATE(#{makeDate},'%Y-%m-%d %H:%i:%s'),
+			#{makeUser},str_TO_DATE(#{modifyDate},'%Y-%m-%d %H:%i:%s'),#{modifyUser})
+	</insert>
+	<delete id="deleteJobPlanDef" parameterType="Map" >
+		DELETE FROM cms_JOBPLANDEF  WHERE JOBPLANCODE = #{jobPlanCode} 
+	</delete>
+	<delete id="deleteJobPlanParam" parameterType="Map" >
+		DELETE FROM cms_JOBPLANPARAM  WHERE JOBPLANCODE = #{jobPlanCode}
+	</delete>
+	<update id="stopJobPlanDef" parameterType="Map" >
+		UPDATE  cms_JOBPLANDEF  SET USEFLAG = '1',TRIGGERSTATE='2' WHERE JOBPLANCODE = #{jobPlanCode}
+	</update>
+	<update id="startJobPlanDef" parameterType="Map" >
+		UPDATE  cms_JOBPLANDEF  SET USEFLAG = '0',TRIGGERSTATE='1' WHERE JOBPLANCODE = #{jobPlanCode}
+	</update>
+	<select id="selectJobRunLogSerialNO" resultType="string" parameterType="Map">
+		SELECT MAX(T.SERIALNO) SERIALNO
+        FROM cms_JOBRUNLOG T
+       WHERE 1 = 1
+         AND T.JOBPLANCODE = #{jobPlanCode}
+	</select>
+	<update id="updateJobRunLog" parameterType="Map">
+		UPDATE cms_JOBRUNLOG  SET
+		       RUNSTATE   = #{runState},
+		       MODIFYDATE = STR_TO_DATE(#{modifyDate},'%Y-%m-%d %H:%i:%s'),
+		       MODIFYUSER = 'system'
+		 WHERE SERIALNO= #{serialNo}	
+	</update>
+	<select id="selectStopJobPlan" parameterType="Map" resultMap = "BaseResultMap">
+		SELECT D.*,T.JOBCLASSNAME FROM cms_JOBPLANDEF D,cms_JOBDEF T 
+			WHERE D.JOBCODE = T.JOBCODE  AND D.JOBPLANCODE = #{jobPlanCode}
+	</select>	
+	
+	<select id="selectReturnView" resultMap = "BaseResultMap" parameterType="com.donbala.model.Quartz">
+		 select  e.jobcode,e.repeatinterval,e.repeatunit,date_format(e.STARTDATE,'%Y-%m-%d %H:%i:%s') startdate,date_format(e.ENDDATE,'%Y-%m-%d %H:%i:%s') enddate,e.jobplandesc,
+		 	(select t.paramvalue from cms_jobplanparam t where t.paramcode='paramStartDate' and e.jobplancode=t.jobplancode) paramStartDate,
+		 	(select t.paramvalue from cms_jobplanparam t where t.paramcode='paramEndDate'and e.jobplancode=t.jobplancode) paramEndDate,
+   			(SELECT c.CODENAME FROM cms_CODEDEF c WHERE CODETYPE= 'jobPlan' and c.code=e.repeatunit) paramName,
+   			(SELECT c.CODEALIAS FROM cms_CODEDEF c WHERE CODETYPE= 'jobPlan' and c.code=e.repeatunit) valueAlias,
+   			(select d.jobName from cms_jobdef d where d.jobcode=e.jobcode) jobName
+   			from cms_jobplandef e
+ 	 		where jobplancode=#{jobPlanCode}
+	</select>
+	<select id="selectParamByCode" resultMap = "BaseResultMap" parameterType="com.donbala.model.Quartz">
+		 select  t.paramcode, t.paramvalue, c.paramname,(select jobclassname from cms_jobdef e where e.jobcode=c.jobcode)jobclassname
+   			from cms_jobplanparam t, cms_JOBPARAMDEF c
+  			where t.jobcode = c.jobcode and t.paramcode=c.paramcode
+    		and t.jobplancode = #{jobPlanCode}
+    		GROUP BY t.paramcode,
+			t.paramvalue,
+			c.paramname
+  			order by t.paramvalue
+	</select>
+	<delete id="deletePlanParam" parameterType="com.donbala.model.Quartz" >
+		delete from cms_JOBPLANPARAM where jobplancode= #{jobPlanCode}
+	</delete>
+	<update id="updateJobPlan" parameterType="com.donbala.model.Quartz" >
+		UPDATE cms_JOBPLANDEF SET JOBCODE=#{jobName},JOBPLANDESC=#{jobPlanDesc},REPEATINTERVAL=#{repeatInterval},
+		REPEATUNIT=#{repeatUnit},STARTDATE=STR_TO_DATE(#{startDate},'%Y-%m-%d %H:%i:%s'),ENDDATE=STR_TO_DATE(#{endDate},'%Y-%m-%d %H:%i:%s'),
+		USEFLAG=#{useFlag},TRIGGERSTATE=#{triggerState},
+		MODIFYDATE=STR_TO_DATE(#{modifyDate},'%Y-%m-%d %H:%i:%s'),MODIFYUSER=#{modifyUser},CRONEXP=#{cronExp}
+		where JOBPLANCODE=#{jobPlanCode}
+	</update>
+	
+	<!-- <select id="selectJobPlanState"  parameterType="java.util.List" resultType="map">
+		select * from (
+         	<foreach collection="array" item="jobPlanCode" separator="union all">
+         		SELECT (CASE WHEN  RUNSTATE='0' THEN '运行中' WHEN RUNSTATE='1' THEN '等待运行' WHEN runstate='2' THEN'运行停止' END) RUNSTATE,JOBPLANCODE
+  					FROM (SELECT IFNULL(RUNSTATE,'1')RUNSTATE,IFNULL(JOBPLANCODE,#{jobPlanCode})JOBPLANCODE 
+          				FROM cms_JOBRUNLOG
+         				WHERE JOBPLANCODE = #{jobPlanCode}
+         				ORDER BY SERIALNO DESC)a
+ 				LIMIT 0,1
+         	</foreach>
+         ) A
+	</select> -->
+	<select id="selectJobPlanState"  parameterType="string" resultType="com.donbala.model.Quartz">     		
+		SELECT a.jobplancode,
+		       (CASE
+		         WHEN a.USEFLAG = '1' THEN
+		          '停止运行'
+		         ELSE
+		          IFNULL((SELECT (CASE
+		                    WHEN t.runstate = '0' THEN
+		                     '正在运行'
+		                    WHEN t.runstate = '1' THEN
+		                     '等待运行'
+		                    ELSE
+		                     ''
+		                  END) runstate
+		             FROM cms_jobrunlog t
+		            WHERE t.JOBPLANCODE = a.JOBPLANCODE
+		            ORDER BY t.SERIALNO DESC LIMIT 1),'等待运行')
+		       END) runstate
+		  FROM cms_jobplandef a
+		 WHERE a.jobplancode = #{jobPlanCode}
+	</select>
+	
+	<update id="updateJobPlanStateStart">
+		update cms_jobplandef a
+		   set a.TRIGGERSTATE = '1'
+		 where a.JOBPLANCODE = #{jobPlanCode}				
+	</update>
+	
+	<update id="updateJobPlanStateTerminate">
+		update cms_jobplandef a
+		   set a.TRIGGERSTATE = '0'
+		 where a.JOBPLANCODE = #{jobPlanCode}				
+	</update>
+	
+	
+</mapper>
